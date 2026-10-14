@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <title>REALM — Property Empire</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">R</span><div><strong>REALM</strong><small>PROPERTY EMPIRE</small></div></div>
+    <div class="top-actions"><span class="pill"><i class="online-dot"></i> LOCAL SIMULATION</span><button id="saveBtn" class="button secondary">Save game</button><button id="resetBtn" class="button danger">New game</button></div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div><p class="eyebrow">YOUR CITY. YOUR DECISIONS.</p><h1>Build a city that <em>pays its own way.</em></h1><p class="muted">Balance property, construction, demolition and essential infrastructure. Every choice changes your operating costs.</p></div>
+      <div class="hero-stats"><div><span>Available cash</span><strong id="cash">$0</strong></div><div><span>Daily net income</span><strong id="dailyNet">$0</strong></div><div><span>City day</span><strong id="dayLabel">Day 1</strong></div></div>
+    </section>
+    <nav class="tabs" aria-label="Game sections">
+      <button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="market">Land market</button><button class="tab" data-tab="construction">Construction</button><button class="tab" data-tab="infrastructure">Infrastructure</button><button class="tab" data-tab="finance">Finance log</button>
+    </nav>
+    <section id="overview" class="page active">
+      <div class="section-head"><div><p class="eyebrow">CITY CONTROL</p><h2>City overview</h2></div><button id="nextDayBtn" class="button primary">Advance 1 day <span>→</span></button></div>
+      <div class="metric-grid" id="metrics"></div>
+      <div class="content-grid">
+        <article class="panel"><div class="panel-head"><h3>City map</h3><span class="muted small">Illustrative grid</span></div><div id="cityMap" class="city-map"></div><div class="legend"><span><i class="key residential"></i> Residential</span><span><i class="key commercial"></i> Commercial</span><span><i class="key civic"></i> Infrastructure</span><span><i class="key empty"></i> Available land</span></div></article>
+        <article class="panel"><div class="panel-head"><h3>Daily operations</h3><span class="muted small">Estimated per day</span></div><div id="operations" class="operations"></div><div class="note">Tip: infrastructure is expensive to build, but reliable services protect property income and reputation.</div></article>
+      </div>
+      <article class="panel"><div class="panel-head"><h3>Active projects</h3><span class="muted small">Construction & demolition</span></div><div id="activeProjects"></div></article>
+    </section>
+    <section id="market" class="page">
+      <div class="section-head"><div><p class="eyebrow">ACQUISITIONS</p><h2>Land market</h2><p class="muted">Buy a plot before choosing what to build on it.</p></div></div>
+      <div id="landMarket" class="cards-grid"></div>
+    </section>
+    <section id="construction" class="page">
+      <div class="section-head"><div><p class="eyebrow">CAPITAL PROJECTS</p><h2>Construction & demolition</h2><p class="muted">Workers, work crews and time are limited resources.</p></div></div>
+      <div class="content-grid">
+        <article class="panel"><h3>Build on owned land</h3><label for="plotSelect">Select an empty owned plot</label><select id="plotSelect"></select><label for="buildingSelect">Building plan</label><select id="buildingSelect"></select><div id="buildPreview" class="preview-box"></div><button id="buildBtn" class="button primary full">Start construction</button></article>
+        <article class="panel"><h3>Demolish a building</h3><p class="muted small">Demolition hires a machine crew and includes debris removal. You must own the property and have enough cash.</p><label for="demoSelect">Select a building to demolish</label><select id="demoSelect"></select><div id="demoPreview" class="preview-box"></div><button id="demoBtn" class="button danger full">Order demolition</button></article>
+      </div>
+      <article class="panel"><div class="panel-head"><h3>Workforce & construction queue</h3><span class="muted small">Upgrade your capacity</span></div><div id="workforcePanel"></div></article>
+    </section>
+    <section id="infrastructure" class="page">
+      <div class="section-head"><div><p class="eyebrow">CITY UTILITIES</p><h2>Infrastructure network</h2><p class="muted">Roads connect plots. Power, gas and water keep buildings operational.</p></div></div>
+      <div id="infrastructureCards" class="cards-grid"></div>
+      <div class="content-grid">
+        <article class="panel"><h3>Service coverage</h3><div id="coverage"></div></article>
+        <article class="panel"><h3>Utility planning</h3><p class="muted small">Infrastructure is a city investment, not a magic bonus. It has an upfront cost and ongoing maintenance.</p><ul class="plain-list"><li>Roads improve access and property value.</li><li>Power, gas and water support occupancy.</li><li>Service shortages reduce rent and reputation.</li><li>Infrastructure can take time to build.</li></ul></article>
+      </div>
+    </section>
+    <section id="finance" class="page">
+      <div class="section-head"><div><p class="eyebrow">TRANSPARENCY</p><h2>Finance ledger</h2><p class="muted">Review the cash impact of every important decision.</p></div><button id="exportBtn" class="button secondary">Export ledger CSV</button></div>
+      <div id="ledgerSummary" class="metric-grid"></div><article class="panel"><div id="ledgerTable"></div></article>
+    </section>
+    <footer><span>REALM prototype v2.0</span><span>Single-player simulation · Demo economy · No real payments</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
